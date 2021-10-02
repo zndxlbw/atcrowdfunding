@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.atguigu.crowd:atcrowdfunding01-common-util:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../my_maven_repository/com/atguigu/crowd/atcrowdfunding01-common-util/1.0-SNAPSHOT/atcrowdfunding01-common-util-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../my_maven_repository/com/atguigu/crowd/atcrowdfunding01-common-util/1.0-SNAPSHOT/atcrowdfunding01-common-util-1.0-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../my_maven_repository/com/atguigu/crowd/atcrowdfunding01-common-util/1.0-SNAPSHOT/atcrowdfunding01-common-util-1.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

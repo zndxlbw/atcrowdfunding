@@ -1,0 +1,82 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <!--配置监听器-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring-persist-*.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- 配置 SpringMVC 的前端控制器 -->
+  <!-- The front controller of this Spring Web application, responsible for handling all application
+  requests -->
+  <servlet>
+    <servlet-name>springDispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!-- 以初始化参数的形式指定 SpringMVC 配置文件的位置 -->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-web-mvc.xml</param-value>
+    </init-param>
+    <!-- 让 DispatcherServlet 在 Web 应用启动时创建对象、 初始化 -->
+    <!-- 默认情况： Servlet 在第一次请求的时候创建对象、 初始化 -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <!-- Map all requests to the DispatcherServlet for handling -->
+  <servlet-mapping>
+    <servlet-name>springDispatcherServlet</servlet-name>
+    <!-- DispatcherServlet 映射的 URL 地址 -->
+    <!-- 大白话： 什么样的访问地址会交给 SpringMVC 来处理 -->
+    <!-- 配置方式一： 符合 RESTFUL 风格使用“/” -->
+    <!-- <url-pattern>/</url-pattern> -->
+    <!-- 配置方式二： 请求扩展名 -->
+    <url-pattern>*.html</url-pattern>
+    <url-pattern>*.json</url-pattern>
+  </servlet-mapping>
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>springDispatcherServlet</servlet-name>-->
+<!--    &lt;!&ndash; DispatcherServlet 映射的 URL 地址 &ndash;&gt;-->
+<!--    &lt;!&ndash; 大白话： 什么样的访问地址会交给 SpringMVC 来处理 &ndash;&gt;-->
+<!--    &lt;!&ndash; 配置方式一： 符合 RESTFUL 风格使用“/” &ndash;&gt;-->
+<!--    &lt;!&ndash; <url-pattern>/</url-pattern> &ndash;&gt;-->
+<!--    &lt;!&ndash; 配置方式二： 请求扩展名 &ndash;&gt;-->
+<!--    <url-pattern>*.json</url-pattern>-->
+<!--  </servlet-mapping>-->
+
+
+
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <!-- 指定字符集 -->
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <!-- 强制请求进行编码 -->
+    <init-param>
+      <param-name>forceRequestEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <!-- 强制响应进行编码 -->
+    <init-param>
+      <param-name>forceResponseEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <!--这个filter必须执行再其他filter之前-->
+  <!--原因：
+    因为在这个filter中涉及到了字符集的设置，因此需要在request.getParameter()前边
+  -->
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+</web-app>
